@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class PessoaController {
 		}
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<Pessoa> findById(@PathVariable(value = "id") Long id) {
 		Pessoa pessoa = pessoaService.findById(id);
 
@@ -55,10 +56,19 @@ public class PessoaController {
 
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<Pessoa> update(@PathVariable(value = "id") Long id, @RequestBody Pessoa pessoa) {
 
 		return ResponseEntity.ok().body(pessoaService.update(id, pessoa));
+
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+
+		pessoaService.delete(id);
+
+		return ResponseEntity.noContent().build();
 
 	}
 
