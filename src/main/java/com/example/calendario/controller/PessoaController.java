@@ -57,9 +57,8 @@ public class PessoaController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Pessoa> update(@PathVariable(value = "id") Long id, @RequestBody Pessoa pessoa) {
-		Pessoa p = pessoaService.findById(id);
 
-		return new ResponseEntity<Pessoa>(pessoaService.save(pessoa), HttpStatus.OK);
+		return ResponseEntity.ok().body(pessoaService.update(id, pessoa));
 
 	}
 

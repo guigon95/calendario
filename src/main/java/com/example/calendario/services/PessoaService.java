@@ -33,6 +33,13 @@ public class PessoaService {
 		pessoa.setIdPessoa(null);
 		return pessoaRepository.save(pessoa);
 	}
+	
+	public Pessoa update(Long id, Pessoa pessoa) {
+
+		Pessoa p = findById(id);
+		p.setNomePessoa(pessoa.getNomePessoa());
+		return pessoaRepository.save(pessoa);
+	}
 
 	public void delete(Pessoa pessoa) {
 		pessoaRepository.delete(pessoa);
